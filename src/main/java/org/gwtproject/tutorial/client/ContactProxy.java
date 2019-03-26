@@ -3,13 +3,14 @@ package org.gwtproject.tutorial.client;
 import java.util.List;
 
 import org.gwtproject.tutorial.server.Contact;
+import org.gwtproject.tutorial.server.ContactLocator;
 import org.gwtproject.tutorial.server.Contact.Phone;
 
 import com.google.web.bindery.requestfactory.shared.EntityProxy;
 import com.google.web.bindery.requestfactory.shared.ProxyFor;
 import com.google.web.bindery.requestfactory.shared.ValueProxy;
 
-@ProxyFor(value = Contact.class)
+@ProxyFor(value = Contact.class, locator = ContactLocator.class)
 public interface ContactProxy extends EntityProxy {
 	
 	Long getId();

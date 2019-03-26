@@ -22,14 +22,6 @@ public class Contact {
 	
 	@Size(max = 100)
 	private String notes;
-	
-	public Contact () {
-		
-	}
-	
-	public static Contact findContact (Long id) {
-		return CEM.fetch(id);
-	}
 
 	public Long getId() {
 		return id;
