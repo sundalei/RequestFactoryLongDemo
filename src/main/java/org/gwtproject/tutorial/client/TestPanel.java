@@ -63,7 +63,7 @@ public class TestPanel extends Composite {
 		contact.setPhones(Arrays.asList(phone));
 		contact.setNotes("Random notes for " + rand);
 		
-		context.persist().using(contact).fire();
+		context.persist(contact).fire();
 		
 	}
 	
@@ -155,7 +155,7 @@ public class TestPanel extends Composite {
 				ContactRequest ctx = factory.createContactRequest();
 				ContactProxy editableContact = ctx.edit(contact);
 				editableContact.setNotes("Late updated " + new Date());
-				ctx.persist().using(editableContact).fire();
+				ctx.persist(editableContact).fire();
 			}
 		};
 		
@@ -169,7 +169,7 @@ public class TestPanel extends Composite {
 			public void onSuccess(ContactProxy contact) {
 				ContactRequest ctx = factory.createContactRequest();
 				ContactProxy editableContact = ctx.edit(contact);
-				ctx.remove().using(editableContact).fire();
+				ctx.remove(editableContact).fire();
 			}
 		};
 		
@@ -184,7 +184,7 @@ public class TestPanel extends Composite {
 			public void onSuccess(List<ContactProxy> response) {
 				ContactRequest ctx = factory.createContactRequest();
 				for(ContactProxy contact : response) {
-					ctx.remove().using(ctx.edit(contact));
+					ctx.remove(ctx.edit(contact));
 				}
 				ctx.fire();
 			}
@@ -240,7 +240,7 @@ public class TestPanel extends Composite {
 			}
 		};
 		
-		context.persist().using(contact).fire(receiver);
+		context.persist(contact).fire(receiver);
 	}
 
 }

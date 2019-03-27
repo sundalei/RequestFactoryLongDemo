@@ -2,9 +2,9 @@ package org.gwtproject.tutorial.client;
 
 import java.util.List;
 
-import org.gwtproject.tutorial.server.Contact;
+import org.gwtproject.tutorial.server.ContactService;
+import org.gwtproject.tutorial.server.ContactServiceLocator;
 
-import com.google.web.bindery.requestfactory.shared.InstanceRequest;
 import com.google.web.bindery.requestfactory.shared.Request;
 import com.google.web.bindery.requestfactory.shared.RequestContext;
 import com.google.web.bindery.requestfactory.shared.RequestFactory;
@@ -14,14 +14,14 @@ public interface Factory extends RequestFactory {
 	
 	ContactRequest createContactRequest();
 	
-	@Service(value = Contact.class)
+	@Service(value = ContactService.class, locator = ContactServiceLocator.class)
 	public interface ContactRequest extends RequestContext {
 		
 		Request<Integer> count();
 		Request<ContactProxy> find(Long id);
 		Request<List<ContactProxy>> findAllContacts();
 		
-		InstanceRequest<ContactProxy, Void> persist();
-		InstanceRequest<ContactProxy, Void> remove();
+		Request<Void> persist(ContactProxy contact);
+		Request<Void> remove(ContactProxy contact);
 	}
 }
